@@ -1,9 +1,10 @@
 import fs from 'fs';
 import typescript from '@rollup/plugin-typescript';
 
+const ignoreDirs = [];
 const dirs = fs
    .readdirSync('./src', { withFileTypes: true })
-   .filter(dir => dir.isDirectory());
+   .filter(dir => dir.isDirectory() && !ignoreDirs.includes(dir.name));
 
 const options = dirs.map(dir => (
    {
