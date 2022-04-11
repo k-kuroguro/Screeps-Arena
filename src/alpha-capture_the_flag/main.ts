@@ -2,6 +2,7 @@ import { getObjectsByPrototype } from 'game/utils';
 import { Creep, StructureTower } from 'game/prototypes';
 import { ATTACK, RANGED_ATTACK, HEAL, ERR_NOT_IN_RANGE } from 'game/constants';
 import { Flag } from 'arena';
+import { hasBodyPart } from './utils';
 
 const ROLE_FORWARD_HEALER = 'ROLE_FORWARD_HEALER';
 const ROLE_FORWARD_ATTACKER = 'ROLE_FORWARD_ATTACKER';
@@ -55,11 +56,11 @@ function initialize(creeps: Creep[]) {
 
    let backwardHealerCount = 0;
    for (const creep of creeps) {
-      if (creep.body.some(p => p.type === ATTACK)) {
+      if (hasBodyPart(creep, ATTACK)) {
          roleMap[creep.id] = ROLE_BACKWARD_ATTACKER;
-      } else if (creep.body.some(p => p.type === RANGED_ATTACK)) {
+      } else if (hasBodyPart(creep, RANGED_ATTACK)) {
          roleMap[creep.id] = ROLE_FORWARD_ATTACKER;
-      } else if (creep.body.some(p => p.type === HEAL)) {
+      } else if (hasBodyPart(creep, HEAL)) {
          if (backwardHealerCount < 1) {
             roleMap[creep.id] = ROLE_BACKWARD_HEALER;
             backwardHealerCount++;
