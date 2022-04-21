@@ -9,7 +9,7 @@ const ROLE_FORWARD_ATTACKER = 'ROLE_FORWARD_ATTACKER';
 const ROLE_BACKWARD_HEALER = 'ROLE_BACKWARD_HEALER';
 const ROLE_BACKWARD_ATTACKER = 'ROLE_BACKWARD_ATTACKER';
 
-let isFirstLoop = true;
+let isFirstLoop: boolean = true;
 let isLeft: boolean;
 let roleMap: { [name: string]: string } = {};
 
